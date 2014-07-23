@@ -11,6 +11,7 @@
     "url": "https://github.com/zoeames/home-inventory"
   },
   "author": "Zoe Ames <zoeames@gmail.com>",
+  "contributors": ["Shruti Sharma <shrutijalewar@gmail.com>"],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/zoeames/home-inventory/issues"
