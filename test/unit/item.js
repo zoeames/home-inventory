@@ -46,7 +46,7 @@ describe('Item', function(){
     it('should find all the items from the mongo databse',function(done){
       var table = new Item('table', 'living room', '07/23/2012', 1, 50);
       table.save(function (){
-         Item.find({name:'table'},function(items){
+         Item.find({},function(items){
           expect(items).to.have.length(1);
            done();
          });
@@ -59,22 +59,48 @@ describe('Item', function(){
       var chair = new Item('chair', 'living room', '07/23/2012', 1, 50);
       var bed   = new Item('bed', 'living room', '07/23/2012', 1, 50);
       table.save(function(){
-       
+        couch.save(function(){
+          chair.save(function(){
+            bed.save(function (){
+              Item.find({name:'couch'}, function(items){
+                console.log(items);
+                expect(items).to.have.length(1);
+                expect(items[0].name).to.equal('couch');
+                done();
+                });
+              });
+            });
+          });
+        });
       });
-      couch.save(function(){
-        
+  describe('#value', function(){
+    it('should calculate the cumulative value of an item',function(){
+      var table = new Item('table', 'living room', '07/23/2012', 4, 50);
+      var val = table.value();
+        expect(val).to.equal(200);
+      });
+    });
+  describe('.value', function(){
+    it('should calculate the value of all items in a room',function(done){
+      var stool = new Item('stool', 'living room', '07/23/2012', 1, 50);
+      var bed = new Item('bed', 'living room', '07/23/2012', 1, 1500);
+      var table = new Item('table', 'living room', '07/23/2012', 1, 50);
+      var couch = new Item('couch', 'living room', '07/23/2012', 1, 500);
+      var chair = new Item('chair', 'living room', '07/23/2012', 1, 150);
+      stool.save(function (){
+        bed.save(function(){
+          table.save(function(){
+           couch.save(function(){
+            chair.save(function (){
+              Item.value({room:'living room'}, function(value){
+                expect(value).to.equal(2250);
+                done();
+                });
+              });
+            });
+          });
         });
-      chair.save(function(){
-         
-        });
-      bed.save(function (){
-       
-        });
-         Item.find({name:'couch'}, function(items){
-         console.log(items);
-           expect(items).to.have.length(1);
-           expect(items[0].name).to.equal('couch');
-           done();
       });
     });
   });
+});
