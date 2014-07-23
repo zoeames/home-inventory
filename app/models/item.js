@@ -1,5 +1,7 @@
 'use strict';
 
+var cItem = global.mongodb.collection('items');
+
 function Item(name, room, dateAcquired, count, cost){
   this.name = name;
   this.room = room;
@@ -8,5 +10,12 @@ function Item(name, room, dateAcquired, count, cost){
   this.cost = parseInt(cost);
 
 }
+
+Item.prototype.save = function(cb){
+cItem.save(this, function(err, object){
+cb();
+});
+};
+
 
 module.exports = Item;
