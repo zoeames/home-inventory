@@ -17,5 +17,11 @@ cb();
 });
 };
 
+Item.find = function(item, cb){
+  cItem.find(item).toArray(function(err,items){
+    cb(items);
+  });
+};
+
 
 module.exports = Item;
