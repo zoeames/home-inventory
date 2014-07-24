@@ -11,7 +11,9 @@
     "url": "https://github.com/zoeames/home-inventory"
   },
   "author": "Zoe Ames <zoeames@gmail.com>",
-  "contributors": ["Shruti Sharma <shrutijalewar@gmail.com>"],
+  "contributors": [
+    "Shruti Sharma <shrutijalewar@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/zoeames/home-inventory/issues"
@@ -27,6 +29,7 @@
   },
   "dependencies": {
     "chalk": "^0.5.1",
+    "lodash": "^2.4.1",
     "mongodb": "^1.4.7",
     "request": "^2.38.0",
     "sync-prompt": "^0.4.1"
